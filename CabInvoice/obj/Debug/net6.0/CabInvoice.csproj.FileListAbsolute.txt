@@ -1,0 +1,5 @@
+D:\c#program\CabInvoice\CabInvoice\obj\Debug\net6.0\CabInvoice.csproj.AssemblyReference.cache
+D:\c#program\CabInvoice\CabInvoice\obj\Debug\net6.0\CabInvoice.GeneratedMSBuildEditorConfig.editorconfig
+D:\c#program\CabInvoice\CabInvoice\obj\Debug\net6.0\CabInvoice.AssemblyInfoInputs.cache
+D:\c#program\CabInvoice\CabInvoice\obj\Debug\net6.0\CabInvoice.AssemblyInfo.cs
+D:\c#program\CabInvoice\CabInvoice\obj\Debug\net6.0\CabInvoice.csproj.CoreCompileInputs.cache
