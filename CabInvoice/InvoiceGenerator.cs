@@ -76,4 +76,40 @@ namespace CabInvoice
         //returns invoice summary object 
         return new InvoiceSummary(rides.Length, totalFare);
     }
+
+    double CalculateFare(double distance, int time)
+    {
+        throw new NotImplementedException();
+    }
+
+    // Adds the rides in dictionary with key as a user id 
+    //Adding Method
+    public void AddRides(string userId, Ride[] rides)
+    {
+        try
+        {
+            rideRepository.AddRide(userId, rides);
+        }
+        catch (CabInvoiceException)
+        {
+            if (rides == null)
+            {
+                throw new CabInvoiceException(CabInvoiceException.ExceptionType.NULL_RIDES, "Null rides");
+            }
+        }
+    }
+    //Gets the invoice summary by passing user id into ride repository and then passing rides array to calculate fares.
+
+    public InvoiceSummary GetInvoiceSummary(string userId)
+    {
+        try
+        {
+            return this.CalculateFare(rideRepository.GetRides(userId));
+        }
+        catch
+        {
+            throw new CabInvoiceException(CabInvoiceException.ExceptionType.INVALID_USER_ID, "Invalid user id");
+        }
+    }
 }
+
