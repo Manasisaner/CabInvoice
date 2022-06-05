@@ -28,11 +28,24 @@ namespace CabInvoiceTest
         }
     }
 
-    internal class InvoiceGenerator
+    public class Tests
     {
-        internal double CalculateFare(double distance, int time)
+        /// <summary>
+        /// Givens the multiple rides should return invoice summary.  UC2
+        /// </summary>
+        [TestMethod]
+        public void GivenMultipleRidesShouldReturnInvoiceSummary()
         {
-            throw new NotImplementedException();
+            //Creating instance of invoice generator 
+            InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
+            Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1) };
+
+            //Generating Summary for rides
+            InvoiceSummary summary = invoiceGenerator.CalculateFare(rides);
+            InvoiceSummary expectedSummary = new InvoiceSummary(2, 30.0);
+
+            //Asserting values
+            Assert.AreEqual(expectedSummary, summary);
         }
     }
 }
