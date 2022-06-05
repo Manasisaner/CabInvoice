@@ -9,21 +9,42 @@ namespace CabInvoice
     public class InvoiceGenerator
     {
 
+
         //Create Variables 
-        private RideType rideRepository;
         //Create Constants
+        RideType rideType;
+        private RideRepository rideRepository;
+        private double averageFarePerRide;
         private readonly double MINIMUM_COST_PER_KM;
         private readonly int COST_PER_TIME;
         private readonly double MINIMUM_FARE;
 
+
         //Initializes a new instance of the class.
         //Creating Method
-        public InvoiceGenerator()
+        public InvoiceGenerator(RideType rideType)
         {
-            this.rideRepository = new RideType();
-            this.MINIMUM_COST_PER_KM = 10;
-            this.COST_PER_TIME = 1;
-            this.MINIMUM_FARE = 5;
+            this.rideType = rideType;
+            this.rideRepository = new RideRepository();
+            try
+            {
+                if (rideType.Equals(RideType.PREMIUM))
+                {
+                    this.MINIMUM_COST_PER_KM = 15;
+                    this.COST_PER_TIME = 2;
+                    this.MINIMUM_FARE = 20;
+                }
+                else if (rideType.Equals(RideType.NORMAL))
+                {
+                    this.MINIMUM_COST_PER_KM = 10;
+                    this.COST_PER_TIME = 1;
+                    this.MINIMUM_FARE = 5;
+                }
+            }
+            catch (CabInvoiceException)
+            {
+                throw new CabInvoiceException(CabInvoiceException.ExceptionType.INVALID_RIDE_TYPE, "Invalid Ride Type");
+            }
         }
         // Calculates the fare.     
         // Create Method
